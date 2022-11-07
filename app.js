@@ -3,7 +3,9 @@ const express = require("express");
 
 const app = express();
 
-const port = process.env.APP_PORT ?? 5000;
+app.use(express.json());
+
+const port = process.env.APP_PORT ?? 5001;
 
 const welcome = (req, res) => {
   res.send("Welcome to users list");
@@ -23,3 +25,5 @@ app.listen(port, (err) => {
     console.log(`Server is listening on ${port}`);
   }
 });
+
+app.post("/api/users", userHandlers.postUsers);
